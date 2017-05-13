@@ -12,6 +12,7 @@
   <!-- local copy of CSS for development -->
   <link href="vendor/DataTables/datatables.min.css" rel="stylesheet">
   <link href="vendor/bootstrap/bootstrap.min.css" rel="stylesheet">
+  <link href="css/maru.css" rel="stylesheet">
 </head>
 
 <body>
@@ -51,27 +52,24 @@
         </div>
       </div>
 
+      <div class="row">&nbsp;</div>
+
       <div class="row">
-        <div class="col-sm-12 text-center">
-          <form id="dimensions" class="form-inline">
-            <div class="form-group col-sm-3">
-              <label class="sr-only" for="height">Height</label>
-              <input type="text" class="form-control" id="height" placeholder="Height">
-            </div>
-            <div class="form-group col-sm-3">
-              <label class="sr-only" for="width">Width</label>
-              <input type="text" class="form-control" id="width" placeholder="Width">
-            </div>
-            <div class="form-group col-sm-3">
-              <label class="sr-only" for="depth">Depth</label>
-              <input type="text" class="form-control" id="depth" placeholder="Depth">
-            </div>
-            <button class="btn btn-primary" type="submit">Search</button>
-          </form>
+        <div id="dimensions" class="col-sm-12 well">
+          <div class="form-group col-sm-2 col-sm-offset-3">
+            <label class="sr-only" for="height">Height</label>
+            <input type="text" class="form-control" id="height" name="height" placeholder="Height">
+          </div>
+          <div class="form-group col-sm-2">
+            <label class="sr-only" for="width">Width</label>
+            <input type="text" class="form-control" id="width" name="width" placeholder="Width">
+          </div>
+          <div class="form-group col-sm-2">
+            <label class="sr-only" for="depth">Depth</label>
+            <input type="text" class="form-control" id="depth" name="depth" placeholder="Depth">
+          </div>
         </div>
       </div>
-
-      <div class="row">&nbsp;</div>
 
       <table id="results" class="table" width="100%">
         <thead>
