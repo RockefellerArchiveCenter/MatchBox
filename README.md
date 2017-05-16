@@ -3,22 +3,27 @@ A simple application that uses the ArchivesSpace API to help determine which box
 
 ## Requirements
 
-TODO: add requirements
+Because the application makes HTTP using Javascript, CORS needs to be implemented on your ArchivesSpace instance. See [as-cors](https://github.com/RockefellerArchiveCenter/as-cors) for an example of how to do this with an ArchivesSpace plugin.
+
+The following routes need to have CORS requesting enabled:
+
+        /container_profiles?all_ids=true  
+        /container_profiles/:id
 
 ## Installation
 
-TODO: add installation steps
+1.  Download or clone this repository.
+
+2.  Set up a config file, which should be named `app-config.js` and placed in the `js/` directory. It should look something like this:
+
+        var baseUrl = "http://localhost:8089"; // Base url for your ArchivesSpace instance, including the backend port number
+        var token = "81ee42992541795ad7cee5b5701a632fd43a61831b1768cab88e921e3a983e27"; // Non-expiring session token for an AS user
+
+To get a non-expiring session token, use a `expiring=false` parameter when making an [ArchivesSpace authentication request](http://archivesspace.github.io/archivesspace/api/#authentication).
 
 ## How it works
-*   A user inputs dimensions of a three dimensional object into separate search fields.
-    *    Height is optional, but width and depth are not
-    *    These object can only be rotated in two dimensions - width and depth are interchangeable but height is not.
-*   A search results page queries the ArchivesSpace API and displays all available container profiles in which that object would fit.
-    *    Results should be sorted by the closest match to dimensions
-    *    Results should be displayed in a sortable table
-    *    For each result, display the name (or the display string) as well as each dimension
-    *    If possible, show the number of instances that use a given container profile so you know if a box is commonly available
-    *    Page should be printable so a user can take it to find a box
+
+The application queries the ArchivesSpace API to get all container profiles, and displays them in a handy table format that can be sorted and searched.
 
 ## Contributing
 

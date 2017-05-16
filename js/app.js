@@ -1,21 +1,39 @@
-// Placeholder function: reads data from a local file, will eventually get data from AS
-function getData() {
-  return data
-  console.log('data')
+// Gets data from ArchivesSpace
+function getContainersIds(uri) {
+  ids = $.ajax({
+    type: "GET",
+    dataType: "json",
+    beforeSend: function(request) {
+      request.setRequestHeader("X-ArchivesSpace-Session", token);
+    },
+    url: baseUrl + uri,
+    success: function(data) {
+      for(item of data) {
+        getContainerData('/container_profiles/'+item)
+      }
+    }
+  });
+}
+
+
+function getContainerData(uri) {
+  containers = $.ajax({
+    type: "GET",
+    dataType: "json",
+    beforeSend: function(request) {
+      request.setRequestHeader("X-ArchivesSpace-Session", token);
+    },
+    url: baseUrl + uri,
+    success: function(data) {
+        makeRow(data)
+      }
+  });
 }
 
 // Concatenates data into HTML table row
 function makeRow(container) {
-  row = '<tr><td>'+container['name']+'</td><td>'+container['height']+'</td><td>'+container['width']+'</td><td>'+container['depth']+'</td>'
+  let row = '<tr><td>'+container['name']+'</td><td>'+container['height']+'</td><td>'+container['width']+'</td><td>'+container['depth']+'</td>'
   $('#results tbody').append(row);
-}
-
-// Main function that loops through data and displays it as table rows
-function displayData() {
-  let data = getData();
-  for(var item of data) {
-    makeRow(item)
-  }
 }
 
 // Custom filtering function which will search data in column four between two values
@@ -44,14 +62,14 @@ $.fn.dataTable.ext.search.push(
     }
 );
 
-displayData();
+getContainersIds('/container_profiles?all_ids=true');
 
 $(document).ready(function() {
-    var table = $('#results').DataTable({
+    setTimeout(function() {var table = $('#results').DataTable({
       "order": [[ 0, 'asc' ]], // sets default sorts as title column, ascending
       "paging": false, // removes paging
       "sDom": "lrtip" // disables the search box
-    });
+    });}, 5000);
 
   // Event listener to redraw on search input
   $('#height, #width, #depth').keyup( function() {
