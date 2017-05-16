@@ -65,6 +65,7 @@ $.fn.dataTable.ext.search.push(
 getContainersIds('/container_profiles?all_ids=true');
 
 $(document).ready(function() {
+    // this is super ugly, need to refactor for a smoother user experience!
     setTimeout(function() {var table = $('#results').DataTable({
       "order": [[ 0, 'asc' ]], // sets default sorts as title column, ascending
       "paging": false, // removes paging
