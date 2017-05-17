@@ -1,5 +1,7 @@
+let dataSet; // declares a global variable for our dataset
+
 // Gets data from ArchivesSpace
-function getContainersIds(uri) {
+function getContainersIds(uri, table) {
   ids = $.ajax({
     type: "GET",
     dataType: "json",
@@ -14,7 +16,6 @@ function getContainersIds(uri) {
     }
   });
 }
-
 
 function getContainerData(uri) {
   containers = $.ajax({
@@ -39,12 +40,12 @@ function makeRow(container) {
 // Custom filtering function which will search data in column four between two values
 $.fn.dataTable.ext.search.push(
     function( settings, data, dataIndex ) {
-        var minHeight = parseInt( $('#height').val(), 10 );
-        var minWidth = parseInt( $('#width').val(), 10 );
-        var minDepth = parseInt( $('#depth').val(), 10 );
-        var height = parseFloat( data[1] ) || 0; // use data for the height column
-        var width = parseFloat( data[2] ) || 0; // use data for the height column
-        var depth = parseFloat( data[3] ) || 0; // use data for the height column
+        let minHeight = parseInt( $('#height').val(), 10 );
+        let minWidth = parseInt( $('#width').val(), 10 );
+        let minDepth = parseInt( $('#depth').val(), 10 );
+        let height = parseFloat( data[1] ) || 0; // use data for the height column
+        let width = parseFloat( data[2] ) || 0; // use data for the height column
+        let depth = parseFloat( data[3] ) || 0; // use data for the height column
 
         if ( ( isNaN( minHeight ) && isNaN( minWidth ) && isNaN( minDepth )) || // if all fields are empty
              ( isNaN( minHeight ) && isNaN( minWidth ) && depth >= minDepth ) || // if only one field has a value
@@ -62,15 +63,24 @@ $.fn.dataTable.ext.search.push(
     }
 );
 
-getContainersIds('/container_profiles?all_ids=true');
-
+// this function executes when the DOM has loaded
 $(document).ready(function() {
-    // this is super ugly, need to refactor for a smoother user experience!
-    setTimeout(function() {var table = $('#results').DataTable({
-      "order": [[ 0, 'asc' ]], // sets default sorts as title column, ascending
-      "paging": false, // removes paging
-      "sDom": "lrtip" // disables the search box
-    });}, 5000);
+  // load the data
+  getContainersIds('/container_profiles?all_ids=true')
+});
+
+// this function executes when all the AJAX request have completed
+$(document).ajaxStop(function() {
+  // declare our table with options
+  let table = $('#results').DataTable({
+    "data": dataSet,
+    "order": [[ 0, 'asc' ]], // sets default sorts as title column, ascending
+    "paging": false, // removes paging
+    "sDom": "lrtip" // disables the search box
+  });
+
+  // show in the completed table
+  $("#results").fadeIn();
 
   // Event listener to redraw on search input
   $('#height, #width, #depth').keyup( function() {
