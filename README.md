@@ -7,7 +7,7 @@ Because the application makes HTTP using Javascript, CORS needs to be implemente
 
 The following routes need to have CORS requesting enabled:
 
-        /container_profiles?all_ids=true  
+        /container_profiles  
         /container_profiles/:id
 
 ## Installation
