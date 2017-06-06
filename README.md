@@ -28,7 +28,7 @@ Pull requests accepted!
 
 Hillel Arnold  
 Julia Welby  
-Emeline Swanson
+Emeline Swanson  
 Erich Chang
 
 ## License
