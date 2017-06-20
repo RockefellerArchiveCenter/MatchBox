@@ -57,4 +57,7 @@ $(document).ready(function() {
   $('#height, #width, #depth').keyup( function() {
       table.draw();
   } );
+
+    $('#results').DataTable();
+
 } );
