@@ -19,3 +19,7 @@ function displayData() {
 }
 
 displayData();
+
+$(document).ready(function() {
+    $('#results').DataTable();
+} );
