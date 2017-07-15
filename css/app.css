@@ -1,3 +1,8 @@
 #dimensions .form-group {
   margin-bottom: 0px;
 }
+
+tr.preferred>td:first-child:after {
+  content: "\2705";
+  margin-left: .5em;
+}
