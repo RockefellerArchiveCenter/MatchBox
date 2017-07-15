@@ -67,6 +67,9 @@ $(document).ajaxStop(function() {
         "sDom": "lrti" // disables the search box
     });
 
+    // hide the loading gif
+    $("#loading").hide();
+
     // show the completed table
     $("#results").fadeIn();
 
