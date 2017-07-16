@@ -5,3 +5,7 @@
 h1.page-title {
   font-size: 4rem;
 }
+
+h1.page-title:hover {
+  color: #666;
+}
