@@ -5,3 +5,8 @@
 h1.page-title {
   font-size: 4rem;
 }
+
+tr.preferred>td:first-child:after {
+  content: "\2705";
+  margin-left: .5em;
+}
