@@ -21,8 +21,13 @@ function getData(uri, list) {
 
 // Concatenates data into HTML table row
 function makeRow(container) {
-    let row = '<tr><td>' + container['name'] + '</td><td>' + container['height'] + '</td><td>' + container['width'] + '</td><td>' + container['depth'] + '</td>'
-    $('#results tbody').append(row);
+    if (preferredContainers.indexOf(container["uri"])>=0) {
+      let row = '<tr class="preferred"><td>' + container['name'] + '</td><td>' + container['height'] + '</td><td>' + container['width'] + '</td><td>' + container['depth'] + '</td>'
+      $('#results tbody').append(row);
+    } else {
+      let row = '<tr><td>' + container['name'] + '</td><td>' + container['height'] + '</td><td>' + container['width'] + '</td><td>' + container['depth'] + '</td>'
+      $('#results tbody').append(row);
+    }
 }
 
 // Custom filtering function which will search data in column four between two values
