@@ -21,7 +21,7 @@
     <div class="col-sm-10 col-sm-offset-1">
       <div class="row">
         <div class="col-sm-9">
-          <h1 class="pull-left">space barnacle <small>thinking inside the box</small></h1>
+          <h1 class="page-title pull-left">space barnacle <small>thinking inside the box</small></h1>
         </div>
         <div class="col-sm-3">
           <div class="text-right pull-right">
@@ -41,7 +41,11 @@
                     <h2 class="modal-title text-left">Help</h2>
                   </div>
                   <div class="modal-body text-left">
-                    <p>space barnacle helps you find a box you can fit into.</p>
+                    <p class="lead">Space Barnacle helps you find a box.</p>
+                    <h4>Searching</h4>
+                    <p>Use the search boxes to enter numerical values for height, width or depth. The application will return all boxes larger than the dimension entered. All dimensions are measured in inches.</p>
+                    <h4>Sorting</h4>
+                    <p>You can sort multiple columns by holding down the shift key.</p>
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -56,18 +60,25 @@
       <div class="row">
         <div id="dimensions" class="col-sm-12 well">
           <div class="form-group col-sm-2 col-sm-offset-3">
-            <label class="sr-only" for="height">Height</label>
-            <input type="text" class="form-control" id="height" placeholder="Height">
+            <label for="height">Height</label>
+            <input type="text" class="form-control" id="height">
           </div>
           <div class="form-group col-sm-2">
-            <label class="sr-only" for="width">Width</label>
-            <input type="text" class="form-control" id="width" placeholder="Width">
+            <label for="width">Width</label>
+            <input type="text" class="form-control" id="width">
           </div>
           <div class="form-group col-sm-2">
-            <label class="sr-only" for="depth">Depth</label>
-            <input type="text" class="form-control" id="depth" placeholder="Depth">
+            <label for="depth">Depth</label>
+            <input type="text" class="form-control" id="depth">
+          </div>
+          <div class="col-sm-6 col-sm-offset-3">
+            <p class="text-center help-block">Enter all dimensions in inches</p>
           </div>
         </div>
+      </div>
+
+      <div id="loading" class="text-center">
+        <img src="img/loading.gif" />
       </div>
 
       <table id="results" class="table" width="100%" style="display:none;">
