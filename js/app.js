@@ -15,6 +15,10 @@ function getData(uri, list) {
             } else { // otherwise, use the data returned to make a row
                 makeRow(data)
             }
+        },
+        error: function (request, status, error)
+        {
+          $('<div class="alert alert-danger" role="alert"><h1>Oops, there was an error!</h1><h4>Make sure ArchivesSpace is running and your credentials are correct</h4></div>').insertAfter("#results");
         }
     });
 }
