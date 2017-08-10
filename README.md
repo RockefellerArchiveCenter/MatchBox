@@ -1,4 +1,4 @@
-# space barnacle
+# MatchBox
 A simple application that uses the ArchivesSpace API to help determine which box a three-dimensional object will fit in.
 
 ## Requirements
@@ -18,7 +18,7 @@ The following routes need to have CORS requesting enabled:
 
         var baseUrl = "http://localhost:8089"; // Base url for your ArchivesSpace instance, including the backend port number
         var token = "81ee42992541795ad7cee5b5701a632fd43a61831b1768cab88e921e3a983e27"; // Non-expiring session token for an AS user
-        preferredContainers = ["/container_profiles/1","/container_profiles/2"] // optional list of AS URIs for container profiles to be marked as preferred 
+        preferredContainers = ["/container_profiles/1","/container_profiles/2"] // optional list of AS URIs for container profiles to be marked as preferred
 
 To get a non-expiring session token, use a `expiring=false` parameter when making an [ArchivesSpace authentication request](http://archivesspace.github.io/archivesspace/api/#authentication).
 
