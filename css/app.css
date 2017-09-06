@@ -10,3 +10,8 @@ tr.preferred>td:first-child:after {
   content: "\2705";
   margin-left: .5em;
 }
+
+.logo {
+  font-family: 'Audiowide', cursive;
+  font-size: 5rem;
+}
