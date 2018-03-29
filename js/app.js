@@ -27,10 +27,10 @@ function getData(uri, list) {
 function makeRow(container) {
     var cubicFeet = ((container['height']*container['width']*container['depth'])/1728).toFixed(2)
     if (preferredContainers.indexOf(container["uri"])>=0) {
-      let row = '<tr class="preferred"><td>' + container['name'] + '</td><td>' + container['height'] + '</td><td>' + container['width'] + '</td><td>' + container['depth'] + '</td><td>'+cubicFeet+'</td>'
+      let row = '<tr class="preferred"><td><input class="count form-control" type="number"></td><td>' + container['name'] + '</td><td>' + container['height'] + '</td><td>' + container['width'] + '</td><td>' + container['depth'] + '</td><td>'+cubicFeet+'</td>'
       $('#results tbody').append(row);
     } else {
-      let row = '<tr><td>' + container['name'] + '</td><td>' + container['height'] + '</td><td>' + container['width'] + '</td><td>' + container['depth'] + '</td><td>'+cubicFeet+'</td>'
+      let row = '<tr><td><input class="count form-control" type="number"></td><td>' + container['name'] + '</td><td>' + container['height'] + '</td><td>' + container['width'] + '</td><td>' + container['depth'] + '</td><td>'+cubicFeet+'</td>'
       $('#results tbody').append(row);
     }
 }
@@ -66,12 +66,12 @@ $(document).ready(function() {
     getData('/container_profiles?all_ids=true', true)
 });
 
-// this function executes when all the AJAX request have completed
+// this function executes when all the AJAX requests have completed
 $(document).ajaxStop(function() {
     // declare our table with options
     let table = $('#results').DataTable({
         "order": [
-            [0, 'asc']
+            [1, 'asc']
         ], // sets default sorts as title column, ascending
         "paging": false, // removes paging
         "sDom": "lrti" // disables the search box
@@ -89,5 +89,18 @@ $(document).ajaxStop(function() {
   } );
 
     $('#results').DataTable();
+
+    $('.count').on('keyup', function(){
+      number = $(this).val()
+      cubicFeet = parseFloat($(this).parents('tr').children('td').last().text())
+      totalCubicFeet = parseFloat($('#total-cubic-feet').text())
+      newTotalCubicFeet = totalCubicFeet+(cubicFeet*number)
+      $('#total-cubic-feet').text(newTotalCubicFeet.toFixed(2))
+      if (newTotalCubicFeet > 0) {
+        $('.calculator').show();
+      } else {
+        $('.calculator').hide();
+      }
+    });
 
 } );

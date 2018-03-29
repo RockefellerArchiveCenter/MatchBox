@@ -6,7 +6,7 @@ h1.page-title {
   font-size: 4rem;
 }
 
-tr.preferred>td:first-child:after {
+tr.preferred>td:nth-child(2):after {
   content: "\2705";
   margin-left: .5em;
 }
@@ -14,4 +14,17 @@ tr.preferred>td:first-child:after {
 .logo {
   font-family: 'Audiowide', cursive;
   font-size: 5rem;
+}
+
+.calculator {
+  display: none;
+  height: 5em;
+  background: #f5f5f5;
+  border-top: 1px solid #e3e3e3;
+  position: sticky;
+  bottom: 0em;
+}
+
+.count {
+  width: 5em !important;
 }
