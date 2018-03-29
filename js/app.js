@@ -25,11 +25,12 @@ function getData(uri, list) {
 
 // Concatenates data into HTML table row
 function makeRow(container) {
+    var cubicFeet = ((container['height']*container['width']*container['depth'])/1728).toFixed(2)
     if (preferredContainers.indexOf(container["uri"])>=0) {
-      let row = '<tr class="preferred"><td>' + container['name'] + '</td><td>' + container['height'] + '</td><td>' + container['width'] + '</td><td>' + container['depth'] + '</td>'
+      let row = '<tr class="preferred"><td>' + container['name'] + '</td><td>' + container['height'] + '</td><td>' + container['width'] + '</td><td>' + container['depth'] + '</td><td>'+cubicFeet+'</td>'
       $('#results tbody').append(row);
     } else {
-      let row = '<tr><td>' + container['name'] + '</td><td>' + container['height'] + '</td><td>' + container['width'] + '</td><td>' + container['depth'] + '</td>'
+      let row = '<tr><td>' + container['name'] + '</td><td>' + container['height'] + '</td><td>' + container['width'] + '</td><td>' + container['depth'] + '</td><td>'+cubicFeet+'</td>'
       $('#results tbody').append(row);
     }
 }
