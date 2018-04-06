@@ -25,7 +25,7 @@ function getData(uri, list) {
 
 // Concatenates data into HTML table row
 function makeRow(container) {
-    var cubicFeet = ((container['height']*container['width']*container['depth'])/1728).toFixed(2)
+    var cubicFeet = ((container['height']*container['width']*container['depth'])/1728).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})
     if (preferredContainers.indexOf(container["uri"])>=0) {
       let row = '<tr class="preferred"><td><input class="count form-control" type="number" min="0"></td><td>' + container['name'] + '</td><td>' + container['height'] + '</td><td>' + container['width'] + '</td><td>' + container['depth'] + '</td><td>'+cubicFeet+'</td>'
       $('#results tbody').append(row);
@@ -76,7 +76,7 @@ function calculate(input) {
         console.log('increment')
         newTotalCubicFeet = totalCubicFeet+(cubicFeet*number)
       }
-      $('#total-cubic-feet').text(newTotalCubicFeet.toFixed(2))
+      $('#total-cubic-feet').text(newTotalCubicFeet.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}))
       $(input).data('lastvalue', input.value);
   }
   if (newTotalCubicFeet > 0) {
@@ -123,9 +123,8 @@ $(document).ajaxStop(function() {
 
   $('#clear-count').on('click', function(){
     $('.count').val("")
-    $('.count').each(function(){
-      calculate(this)
-    })
+    $('#total-cubic-feet').text(0);
+    $('.calculator').addClass('closed');
   });
 
 });
