@@ -64,17 +64,14 @@ function calculate(input) {
   if (input.getAttribute('value') === input.value) {
       $(input).data('lastvalue', input.value);
   } else {
-      number = $(input).val() || 0
       totalCubicFeet = parseFloat($('#total-cubic-feet').text())
-      console.log(totalCubicFeet)
       cubicFeet = parseFloat($(input).parents('tr').children('td').last().text())
-      if (input.value < $(input).data('lastvalue')) {
-        difference = $(input).data('lastvalue') - input.value
-        console.log('decrement')
+      if (input.value < $(input).data('lastvalue')) { // subtraction
+        difference = $(input).data('lastvalue') - (input.value || 0)
         newTotalCubicFeet = totalCubicFeet-(cubicFeet*difference)
-      } else {
-        console.log('increment')
-        newTotalCubicFeet = totalCubicFeet+(cubicFeet*number)
+      } else { // addition
+        difference = input.value - ($(input).data('lastvalue') || 0)
+        newTotalCubicFeet = totalCubicFeet+(cubicFeet*difference)
       }
       $('#total-cubic-feet').text(newTotalCubicFeet.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}))
       $(input).data('lastvalue', input.value);
