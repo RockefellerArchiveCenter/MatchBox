@@ -10,10 +10,10 @@ function getData(uri, list) {
         success: function(data) {
             if (list) { // if the data that's returned is a list, iterate through it and get each item's data
                 for (item of data) {
-                    getData('/container_profiles/' + item, false)
+                    getData('/container_profiles/' + item, false);
                 }
             } else { // otherwise, use the data returned to make a row
-                makeRow(data)
+                makeRow(data);
             }
         },
         error: function (request, status, error)
@@ -64,14 +64,14 @@ function calculate(input) {
   if (input.getAttribute('value') === input.value) {
       $(input).data('lastvalue', input.value);
   } else {
-      totalCubicFeet = parseFloat($('#total-cubic-feet').text())
-      cubicFeet = parseFloat($(input).parents('tr').children('td').last().text())
+      totalCubicFeet = parseFloat($('#total-cubic-feet').text());
+      cubicFeet = parseFloat($(input).parents('tr').children('td').last().text());
       if (input.value < $(input).data('lastvalue')) { // subtraction
-        difference = $(input).data('lastvalue') - (input.value || 0)
-        newTotalCubicFeet = totalCubicFeet-(cubicFeet*difference)
+        difference = $(input).data('lastvalue') - (input.value || 0);
+        newTotalCubicFeet = totalCubicFeet-(cubicFeet*difference);
       } else { // addition
         difference = input.value - ($(input).data('lastvalue') || 0)
-        newTotalCubicFeet = totalCubicFeet+(cubicFeet*difference)
+        newTotalCubicFeet = totalCubicFeet+(cubicFeet*difference);
       }
       $('#total-cubic-feet').text(newTotalCubicFeet.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}))
       $(input).data('lastvalue', input.value);
@@ -86,7 +86,7 @@ function calculate(input) {
 // this function executes when the DOM has loaded
 $(document).ready(function() {
     // load the data
-    getData('/container_profiles?all_ids=true', true)
+    getData('/container_profiles?all_ids=true', true);
 });
 
 // this function executes when all the AJAX requests have completed
@@ -114,12 +114,12 @@ $(document).ajaxStop(function() {
   $('#results').DataTable();
 
   // Cubic footage calculator functions
-  $('.count').on('change', function(){
+  $('.count').on('input change', function(){
     calculate(this)
   });
 
   $('#clear-count').on('click', function(){
-    $('.count').val("")
+    $('.count').val("");
     $('#total-cubic-feet').text(0);
     $('.calculator').addClass('closed');
   });
