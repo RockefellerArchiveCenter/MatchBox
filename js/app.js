@@ -41,9 +41,9 @@ $.fn.dataTable.ext.search.push(
         let minHeight = parseInt($('#height').val(), 10);
         let minWidth = parseInt($('#width').val(), 10);
         let minDepth = parseInt($('#depth').val(), 10);
-        let height = parseFloat(data[1]) || 0; // use data for the height column
-        let width = parseFloat(data[2]) || 0; // use data for the width column
-        let depth = parseFloat(data[3]) || 0; // use data for the depth column
+        let height = parseFloat(data[2]) || 0; // use data for the height column
+        let width = parseFloat(data[3]) || 0; // use data for the width column
+        let depth = parseFloat(data[4]) || 0; // use data for the depth column
 
         if ((isNaN(minHeight) && isNaN(minWidth) && isNaN(minDepth)) || // if all fields are empty
             (isNaN(minHeight) && isNaN(minWidth) && depth >= minDepth) || // if only one field has a value
