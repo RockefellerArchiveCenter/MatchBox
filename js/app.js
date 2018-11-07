@@ -44,6 +44,7 @@ $.fn.dataTable.ext.search.push(
         let height = parseFloat(data[2]) || 0; // use data for the height column
         let width = parseFloat(data[3]) || 0; // use data for the width column
         let depth = parseFloat(data[4]) || 0; // use data for the depth column
+        ga('send', 'event', 'Dimensions search', 'search', minHeight + 'h x ' + minWidth + 'w x ' + minDepth + 'd')
 
         if ((isNaN(minHeight) && isNaN(minWidth) && isNaN(minDepth)) || // if all fields are empty
             (isNaN(minHeight) && isNaN(minWidth) && depth >= minDepth) || // if only one field has a value
@@ -115,6 +116,7 @@ $(document).ajaxStop(function() {
 
   // Cubic footage calculator functions
   $('.count').on('input change', function(){
+    ga('send', 'event', 'Cubic footage calculation', 'enter value', $(this).value)
     calculate(this)
   });
 
@@ -122,6 +124,7 @@ $(document).ajaxStop(function() {
     $('.count').val("");
     $('#total-cubic-feet').text(0);
     $('.calculator').addClass('closed');
+    ga('send', 'event', 'Cubic footage calculation', 'clear results')
   });
 
 });

@@ -2,6 +2,15 @@
 <html>
 
 <head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-10013579-8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-10013579-8');
+  </script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -26,12 +35,6 @@
         </div>
         <div class="col-sm-3">
           <div class="text-right pull-right">
-            <!-- <label>ArchivesSpace</label>
-            <span id="as-status" class="label label-warning"></span>
-            <br/>
-            <label>Account</label>
-            <span id="as-login-status" class="label label-warning"></span>
-            <br/> -->
             <button type="button" class="btn btn-primary button-sm hidden-print" style="margin-top:2em;" onclick="window.print()">Print List</button>
             <button type="button" class="btn btn-warning button-sm hidden-print" data-toggle="modal" data-target="#help" style="margin-top:2em;">Help</button>
             <div id="help" class="modal fade" role="dialog">
@@ -39,7 +42,7 @@
                 <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h2 class="modal-title text-left">Help</h2>
+                    <h2 class="modal-title text-left" onclick="ga('send', 'event', 'Help modal', 'show')">Help</h2>
                   </div>
                   <div class="modal-body text-left">
                     <p class="lead">MatchBox helps you find a box.</p>
@@ -50,7 +53,7 @@
                     <p>You can sort multiple columns by holding down the shift key.</p>
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="ga('send', 'event', 'Help modal', 'close')">Close</button>
                   </div>
                 </div>
               </div>
@@ -116,16 +119,6 @@
     <!-- application scripts -->
     <script src="js/app-config.js"></script>
     <script src="js/app.js?2"></script>
-    <!-- <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-10013579-4', 'auto');
-    ga('send', 'pageview');
-
-  </script> -->
 </body>
 
 </html>
