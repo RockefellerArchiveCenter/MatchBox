@@ -127,4 +127,10 @@ $(document).ajaxStop(function() {
     ga('send', 'event', 'Cubic footage calculation', 'clear results')
   });
 
+  $("#help").on('shown.bs.modal', function() {
+      ga('send', 'event', 'Help modal', 'show');
+    }).on('hidden.bs.modal', function() {
+      ga('send', 'event', 'Help modal', 'hide');
+    });
+
 });

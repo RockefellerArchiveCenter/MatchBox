@@ -35,14 +35,14 @@
         </div>
         <div class="col-sm-3">
           <div class="text-right pull-right">
-            <button type="button" class="btn btn-primary button-sm hidden-print" style="margin-top:2em;" onclick="window.print()">Print List</button>
+            <button type="button" class="btn btn-primary button-sm hidden-print" style="margin-top:2em;" onclick="window.print(); ga('send', 'event', 'Print List', 'print')">Print List</button>
             <button type="button" class="btn btn-warning button-sm hidden-print" data-toggle="modal" data-target="#help" style="margin-top:2em;">Help</button>
             <div id="help" class="modal fade" role="dialog">
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h2 class="modal-title text-left" onclick="ga('send', 'event', 'Help modal', 'show')">Help</h2>
+                    <h2 class="modal-title text-left">Help</h2>
                   </div>
                   <div class="modal-body text-left">
                     <p class="lead">MatchBox helps you find a box.</p>
@@ -53,7 +53,7 @@
                     <p>You can sort multiple columns by holding down the shift key.</p>
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="ga('send', 'event', 'Help modal', 'close')">Close</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                   </div>
                 </div>
               </div>
