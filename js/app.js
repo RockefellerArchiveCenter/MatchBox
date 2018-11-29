@@ -1,3 +1,5 @@
+var preferredContainers = []
+
 // Gets data from ArchivesSpace
 function getData(uri, list) {
     $.ajax({
@@ -26,7 +28,7 @@ function getData(uri, list) {
 // Concatenates data into HTML table row
 function makeRow(container) {
     var cubicFeet = ((container['height']*container['width']*container['depth'])/1728).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})
-    if (preferredContainers.indexOf(container["uri"])>=0) {
+    if (preferredContainers && preferredContainers.indexOf(container["uri"])>=0) {
       let row = '<tr class="preferred"><td><input class="count form-control" type="number" min="0"></td><td>' + container['name'] + '</td><td>' + container['height'] + '</td><td>' + container['width'] + '</td><td>' + container['depth'] + '</td><td>'+cubicFeet+'</td>'
       $('#results tbody').append(row);
     } else {
@@ -86,11 +88,12 @@ function calculate(input) {
 // this function executes when the DOM has loaded
 $(document).ready(function() {
     // load the data
-    getData('/container_profiles?all_ids=true', true);
-});
+    // getData('/container_profiles?all_ids=true', true);
+    for (item in data) {
+      console.log(data[item])
+      makeRow(data[item]);
+    }
 
-// this function executes when all the AJAX requests have completed
-$(document).ajaxStop(function() {
     // declare our table with options
     let table = $('#results').DataTable({
         "order": [
