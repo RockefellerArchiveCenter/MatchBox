@@ -1,5 +1,5 @@
 # MatchBox
-A simple application that uses the ArchivesSpace API to help determine which box a three-dimensional object will fit in.
+A simple application that uses the ArchivesSpace API to help determine the box into which a three-dimensional object will fit. A demonstration site is available at [https://github.com/RockefellerArchiveCenter/MatchBox](https://github.com/RockefellerArchiveCenter/MatchBox)
 
 ## Requirements
 
