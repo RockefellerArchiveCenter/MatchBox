@@ -64,7 +64,7 @@ function calculate(input) {
   if (input.getAttribute('value') === input.value) {
       $(input).data('lastvalue', input.value);
   } else {
-      totalCubicFeet = parseFloat($('#total-cubic-feet').text());
+      totalCubicFeet = parseFloat($('#total-cubic-feet').text().replace(',', ''));
       cubicFeet = parseFloat($(input).parents('tr').children('td').last().text());
       if (input.value < $(input).data('lastvalue')) { // subtraction
         difference = $(input).data('lastvalue') - (input.value || 0);
