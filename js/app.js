@@ -97,7 +97,8 @@ $(document).ajaxStop(function() {
             [1, 'asc']
         ], // sets default sorts as title column, ascending
         "paging": false, // removes paging
-        "sDom": "lrti" // disables the search box
+        "sDom": "lrti", // disables the search box
+        fixedHeader: true
     });
 
     // hide the loading gif
@@ -106,13 +107,13 @@ $(document).ajaxStop(function() {
     // show the completed table
     $("#results").fadeIn();
 
+    table.draw();
+
   // Event listener to redraw on search input
   $('#height, #width, #depth').keyup( function() {
       ga('send', 'event', 'Search', 'enter '+$(this).attr('id')+' value', $(this).val())
       table.draw();
   } );
-
-  $('#results').DataTable();
 
   // Cubic footage calculator functions
   $('.count').on('input change', function(){
