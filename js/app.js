@@ -26,13 +26,8 @@ function getData(uri, list) {
 // Concatenates data into HTML table row
 function makeRow(container) {
     var cubicFeet = ((container['height']*container['width']*container['depth'])/1728).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})
-    if (preferredContainers.indexOf(container["uri"])>=0) {
-      let row = '<tr class="preferred"><td><input class="count form-control" type="number" min="0"></td><td>' + container['name'] + '</td><td>' + container['height'] + '</td><td>' + container['width'] + '</td><td>' + container['depth'] + '</td><td>'+cubicFeet+'</td>'
-      $('#results tbody').append(row);
-    } else {
-      let row = '<tr><td><input class="count form-control" type="number" min="0"></td><td>' + container['name'] + '</td><td>' + container['depth'] + '</td><td>' + container['width'] + '</td><td>' + container['height'] + '</td><td>'+cubicFeet+'</td>'
-      $('#results tbody').append(row);
-    }
+    let row = '<tr '+ preferredContainers.indexOf(container["uri"]) ? 'class="preferred"' : null +'><td><input class="count form-control" type="number" min="0"></td><td>' + container['name'] + '</td><td>' + container['depth'] + '</td><td>' + container['width'] + '</td><td>' + container['height'] + '</td><td>'+cubicFeet+'</td>'
+    $('#results tbody').append(row);
 }
 
 // Custom filtering function which will search data in column four between two values
