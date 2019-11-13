@@ -30,7 +30,7 @@ function makeRow(container) {
       let row = '<tr class="preferred"><td><input class="count form-control" type="number" min="0"></td><td>' + container['name'] + '</td><td>' + container['height'] + '</td><td>' + container['width'] + '</td><td>' + container['depth'] + '</td><td>'+cubicFeet+'</td>'
       $('#results tbody').append(row);
     } else {
-      let row = '<tr><td><input class="count form-control" type="number" min="0"></td><td>' + container['name'] + '</td><td>' + container['height'] + '</td><td>' + container['width'] + '</td><td>' + container['depth'] + '</td><td>'+cubicFeet+'</td>'
+      let row = '<tr><td><input class="count form-control" type="number" min="0"></td><td>' + container['name'] + '</td><td>' + container['depth'] + '</td><td>' + container['width'] + '</td><td>' + container['height'] + '</td><td>'+cubicFeet+'</td>'
       $('#results tbody').append(row);
     }
 }
