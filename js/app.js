@@ -26,13 +26,9 @@ function getData(uri, list) {
 // Concatenates data into HTML table row
 function makeRow(container) {
     var cubicFeet = ((container['height']*container['width']*container['depth'])/1728).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})
-    if (preferredContainers.indexOf(container["uri"])>=0) {
-      let row = '<tr class="preferred"><td><input class="count form-control" type="number" min="0"></td><td>' + container['name'] + '</td><td>' + container['height'] + '</td><td>' + container['width'] + '</td><td>' + container['depth'] + '</td><td>'+cubicFeet+'</td>'
-      $('#results tbody').append(row);
-    } else {
-      let row = '<tr><td><input class="count form-control" type="number" min="0"></td><td>' + container['name'] + '</td><td>' + container['height'] + '</td><td>' + container['width'] + '</td><td>' + container['depth'] + '</td><td>'+cubicFeet+'</td>'
-      $('#results tbody').append(row);
-    }
+    var preferredClass = preferredContainers.indexOf(container["uri"]) ? 'preferred' : null
+    let row = '<tr class="'+preferredClass+'"><td><input class="count form-control" type="number" min="0"></td><td>' + container['name'] + '</td><td>' + container['depth'] + '</td><td>' + container['width'] + '</td><td>' + container['height'] + '</td><td>'+cubicFeet+'</td>'
+    $('#results tbody').append(row);
 }
 
 // Custom filtering function which will search data in column four between two values
@@ -41,9 +37,9 @@ $.fn.dataTable.ext.search.push(
         let minHeight = parseInt($('#height').val(), 10);
         let minWidth = parseInt($('#width').val(), 10);
         let minDepth = parseInt($('#depth').val(), 10);
-        let height = parseFloat(data[2]) || 0; // use data for the height column
+        let height = parseFloat(data[4]) || 0; // use data for the height column
         let width = parseFloat(data[3]) || 0; // use data for the width column
-        let depth = parseFloat(data[4]) || 0; // use data for the depth column
+        let depth = parseFloat(data[2]) || 0; // use data for the depth column
 
         if ((isNaN(minHeight) && isNaN(minWidth) && isNaN(minDepth)) || // if all fields are empty
             (isNaN(minHeight) && isNaN(minWidth) && depth >= minDepth) || // if only one field has a value
