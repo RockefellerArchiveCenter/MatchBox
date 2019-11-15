@@ -107,7 +107,6 @@ $(document).ajaxStop(function() {
 
   // Event listener to redraw on search input
   $('#height, #width, #depth').keyup( function() {
-      ga('send', 'event', 'Search', 'enter '+$(this).attr('id')+' value', $(this).val())
       table.draw();
   } );
 
@@ -120,18 +119,14 @@ $(document).ajaxStop(function() {
     $('.count').val("");
     $('#total-cubic-feet').text(0);
     $('.calculator').addClass('closed');
-    ga('send', 'event', 'Cubic footage calculation', 'clear results')
   });
 
   // Analytics events
   $('.count').on('blur', function(){
-    ga('send', 'event', 'Cubic footage calculation', $(this).parent('td').next('td').text(), $(this).val())
   })
 
   $("#help").on('shown.bs.modal', function() {
-      ga('send', 'event', 'Help modal', 'show');
     }).on('hidden.bs.modal', function() {
-      ga('send', 'event', 'Help modal', 'hide');
     });
 
 });
