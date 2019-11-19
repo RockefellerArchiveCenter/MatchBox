@@ -26,7 +26,7 @@ function getData(uri, list) {
 // Concatenates data into HTML table row
 function makeRow(container) {
     var cubicFeet = ((container['height']*container['width']*container['depth'])/1728).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})
-    var preferredClass = preferredContainers.indexOf(container["uri"]) ? 'preferred' : null
+    var preferredClass = preferredContainers.includes(container["uri"]) ? 'preferred' : null
     let row = '<tr class="'+preferredClass+'"><td><input class="count form-control" type="number" min="0"></td><td>' + container['name'] + '</td><td>' + container['depth'] + '</td><td>' + container['width'] + '</td><td>' + container['height'] + '</td><td>'+cubicFeet+'</td>'
     $('#results tbody').append(row);
 }
