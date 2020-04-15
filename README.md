@@ -12,9 +12,9 @@ Materials that often require specialized box sizes include realia and large or b
 Additionally, MatchBox is used for calculating cubic footage of container profile(s). These calculations are necessary for space management and determining the extent of collections for inclusion in accession and resource records.
 
 ## How it Works
-MatchBox displays a list of all container profiles recorded in ArchivesSpace along with their dimensions. This list is constantly growing as members of Collections Management add new container profiles to the database. MatchBox displays this data through the ArchivesSpace API, ensuring that the container profile information displayed is up to date.
+MatchBox displays a list of all container profiles recorded in ArchivesSpace along with their dimensions. MatchBox displays this data through the ArchivesSpace API, ensuring that the container profile information displayed is up to date.
 
-The dimensions of an object are entered into their respective fields: depth (length), width, and height. The results will populate, eliminating container profile options that are too small. If the results exclude adequate container options, there is typically no appropriate container profile recorded in ArchivesSpace. Contact a member of Collections Management to locate or order a specific box size. The dimensions of newly acquired container sizes will be added to the database for future searching.
+The dimensions of an object are entered into their respective fields: depth (length), width, and height. The results will populate, eliminating container profile options that are too small. If the results exclude adequate container options, there is typically no appropriate container profile recorded in ArchivesSpace.
 
 Cubic footage can be calculated by entering the quantity for each container profile. The total number will populate at the bottom of the page. The cubic footage for individual container profiles is also listed in the rightmost column.
 
