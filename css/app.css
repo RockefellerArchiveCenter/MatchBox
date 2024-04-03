@@ -1,19 +1,13 @@
-#dimensions .form-group {
-  margin-bottom: 0px;
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-h1.page-title {
-  font-size: 4rem;
-}
 
 tr.preferred>td:nth-child(2):after {
   content: "\2705";
   margin-left: .5em;
-}
-
-.logo {
-  font-family: 'Audiowide', cursive;
-  font-size: 5rem;
 }
 
 .calculator {
@@ -32,6 +26,15 @@ tr.preferred>td:nth-child(2):after {
   max-height: 0;
 }
 
+.calculator__text {
+  margin: 10px 0;
+  padding: 0;
+}
+
 .count {
   width: 5em !important;
+}
+
+.inputs__wrapper {
+  padding: 0 10px;
 }

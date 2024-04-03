@@ -18,16 +18,30 @@ function getData(uri, list) {
         },
         error: function (request, status, error)
         {
-          $('<div class="alert alert-danger" role="alert"><h1>Oops, there was an error!</h1><h4>Make sure ArchivesSpace is running and your credentials are correct</h4></div>').insertAfter("#results");
+            $(`<div class="alert alert--orange" role="alert">
+                <div class="alert__text-wrapper">
+                    <p class="alert__text">
+                        Oops, there was an error! Make sure ArchivesSpace is running and your credentials are correct.
+                    </p>
+                </div>
+            </div>`).insertAfter(".header");
         }
     });
 }
 
 // Concatenates data into HTML table row
 function makeRow(container) {
-    var cubicFeet = ((container['height']*container['width']*container['depth'])/1728).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})
+    var cubicFeet = ((container['height'] * container['width'] * container['depth']) / 1728)
+        .toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})
     var preferredClass = preferredContainers.includes(container["uri"]) ? 'preferred' : null
-    let row = '<tr class="'+preferredClass+'"><td><input class="count form-control" type="number" min="0"></td><td>' + container['name'] + '</td><td>' + container['depth'] + '</td><td>' + container['width'] + '</td><td>' + container['height'] + '</td><td>'+cubicFeet+'</td>'
+    let row = `<tr class="${preferredClass}">
+                    <td><input class="count form-control" type="number" min="0"></td>
+                    <td>${container['name']}</td>
+                    <td>${container['depth']}</td>
+                    <td>${container['width']}</td>
+                    <td>${container['height']}</td>
+                    <td>${cubicFeet}</td>
+                </tr>`
     $('#results tbody').append(row);
 }
 
@@ -69,7 +83,8 @@ function calculate(input) {
         difference = input.value - ($(input).data('lastvalue') || 0)
         newTotalCubicFeet = totalCubicFeet+(cubicFeet*difference);
       }
-      $('#total-cubic-feet').text(newTotalCubicFeet.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}))
+      $('#total-cubic-feet').text(newTotalCubicFeet
+        .toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}))
       $(input).data('lastvalue', input.value);
   }
   if (newTotalCubicFeet > 0) {
@@ -120,13 +135,4 @@ $(document).ajaxStop(function() {
     $('#total-cubic-feet').text(0);
     $('.calculator').addClass('closed');
   });
-
-  // Analytics events
-  $('.count').on('blur', function(){
-  })
-
-  $("#help").on('shown.bs.modal', function() {
-    }).on('hidden.bs.modal', function() {
-    });
-
 });
