@@ -31,11 +31,14 @@ function getData(uri, list) {
 
 // Concatenates data into HTML table row
 function makeRow(container) {
-    var cubicFeet = ((container['height'] * container['width'] * container['depth']) / 1728)
+    const cubicFeet = ((container['height'] * container['width'] * container['depth']) / 1728)
         .toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})
-    var preferredClass = preferredContainers.includes(container["uri"]) ? 'preferred' : null
-    let row = `<tr class="${preferredClass}">
-                    <td><input class="count form-control" type="number" min="0"></td>
+    const preferredClass = preferredContainers.includes(container["uri"]) ? 'preferred' : null
+    const inputId = container['uri'].split('/').slice(-1)
+    const row = `<tr class="${preferredClass}">
+                    <td>
+                        <input class="count" type="number" min="0" id="${inputId}">
+                    </td>
                     <td>${container['name']}</td>
                     <td>${container['depth']}</td>
                     <td>${container['width']}</td>
@@ -117,6 +120,7 @@ $(document).ajaxStop(function() {
 
     // show the completed table
     $("#results").fadeIn();
+    $("#clear-count").show()
 
     table.draw();
 

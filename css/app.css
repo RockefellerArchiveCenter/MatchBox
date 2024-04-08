@@ -4,6 +4,9 @@
   align-items: center;
 }
 
+.results__table, .count__button {
+  display: none;
+}
 
 tr.preferred>td:nth-child(2):after {
   content: "\2705";

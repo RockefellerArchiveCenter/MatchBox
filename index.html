@@ -15,9 +15,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>MatchBox</title>
     <link rel="stylesheet" type="text/css" href="https://assets.rockarch.org/v0.9.1/main.min.css">
-    <!-- <link href="https://fonts.googleapis.com/css?family=Audiowide" rel="stylesheet"> -->
     <link href="vendor/DataTables/datatables.min.css" rel="stylesheet">
-    <!-- <link href="vendor/bootstrap/bootstrap.min.css" rel="stylesheet"> -->
     <link href="css/app.css" rel="stylesheet">
   </head>
 
@@ -36,6 +34,7 @@
 
         <div class="grid">
           <div style="grid-column: 3 / span 8;">
+            <h2>Minimum Box Dimensions</h2>
             <div class="flex" style="justify-content: space-between;">
               <div class="inputs__wrapper">
                 <label for="depth">Depth (in inches)</label>
@@ -57,10 +56,11 @@
           <img src="img/loading.gif" />
         </div>
       
-        <table id="results" class="table table-striped" width="100%" style="display:none;">
+        <button class="btn btn--blue btn--sm count__button" id="clear-count">Clear Counts</button>
+        <table id="results" class="table table-striped" width="100%">
           <thead>
             <tr>
-              <th><button class="btn btn--blue btn--sm" id="clear-count">Clear Counts</button></th>
+              <th>Count</th>
               <th>Name</th>
               <th>Depth</th>
               <th>Width</th>
