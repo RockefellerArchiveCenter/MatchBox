@@ -1,11 +1,21 @@
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.container--grid {
+  grid-column: 2 / span 10
 }
 
 .results__table, .count__button {
   display: none;
+}
+
+.section__dimensions {
+  grid-column: 3 / span 8;
+}
+
+.inputs {
+  justify-content: space-between;
+}
+
+.inputs__wrapper {
+  padding: 0 10px;
 }
 
 tr.preferred>td:nth-child(2):after {
@@ -36,8 +46,4 @@ tr.preferred>td:nth-child(2):after {
 
 .count {
   width: 5em !important;
-}
-
-.inputs__wrapper {
-  padding: 0 10px;
 }

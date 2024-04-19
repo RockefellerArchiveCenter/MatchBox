@@ -19,7 +19,7 @@ function getData(uri, list) {
         error: function (request, status, error)
         {
             $(`<div class="alert alert--orange" role="alert">
-                <div class="alert__text-wrapper">
+                <div class="alert__text-wrapper ml-60">
                     <p class="alert__text">
                         Oops, there was an error! Make sure ArchivesSpace is running and your credentials are correct.
                     </p>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
   <head>
   <!-- Matomo Tag Manager -->
@@ -20,22 +20,24 @@
   </head>
 
   <body>
-    <div class="grid">
-      <div style="grid-column: 2 / span 10">
-        
-        <div class="header">
-          <div>
-            <h1>MatchBox</h1>
-          </div>
-          <div>
-            <button class="btn btn--light-blue btn--sm hidden-print" onclick="window.print()">Print List</button>
+    <header class="header header--blue">
+      <div class="wrapper">
+        <div class="container flex">
+          <div class="header__brand header__brand--text">
+            <a href="/" class="header__brand-title">Matchbox</a>
+            <p class="header__brand-subtitle">
+              Thinking inside the box
+            </p>
           </div>
         </div>
-
+      </div>
+    </header>
+    <main class="grid mb-30">
+      <div class="container--grid">
         <div class="grid">
-          <div style="grid-column: 3 / span 8;">
+          <div class="section__dimensions my-30">
             <h2>Minimum Box Dimensions</h2>
-            <div class="flex" style="justify-content: space-between;">
+            <div class="flex inputs">
               <div class="inputs__wrapper">
                 <label for="depth">Depth (in inches)</label>
                 <input type="text" id="depth">
@@ -52,8 +54,8 @@
           </div>
         </div>
 
-        <div id="loading" class="wrapper">
-          <img src="img/loading.gif" />
+        <div id="loading" class="wrapper" aria-label="loading">
+          <img alt="" src="img/loading.gif" />
         </div>
       
         <button class="btn btn--blue btn--sm count__button" id="clear-count">Clear Counts</button>
@@ -72,11 +74,11 @@
           </tbody>
         </table>
       </div>
-    </div>
 
-    <div class="calculator closed wrapper">
-      <h2 class="calculator__text"><span id="total-cubic-feet">0</span> total cubic feet</h2>
-    </div>
+      <div class="calculator closed wrapper">
+        <h2 class="calculator__text"><span id="total-cubic-feet">0</span> total cubic feet</h2>
+      </div>
+    </main>
 
     <script src="vendor/jQuery/jquery-3.1.0.min.js"></script>
     <script src="vendor/DataTables/datatables.min.js"></script>
