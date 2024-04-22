@@ -86,14 +86,10 @@ function calculate(input) {
         difference = input.value - ($(input).data('lastvalue') || 0)
         newTotalCubicFeet = totalCubicFeet+(cubicFeet*difference);
       }
+
       $('#total-cubic-feet').text(newTotalCubicFeet
         .toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}))
       $(input).data('lastvalue', input.value);
-  }
-  if (newTotalCubicFeet > 0) {
-    $('.calculator').removeClass('closed');
-  } else {
-    $('.calculator').addClass('closed');
   }
 }
 
@@ -137,6 +133,5 @@ $(document).ajaxStop(function() {
   $('#clear-count').on('click', function(){
     $('.count').val("");
     $('#total-cubic-feet').text(0);
-    $('.calculator').addClass('closed');
   });
 });
