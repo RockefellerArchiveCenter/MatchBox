@@ -85,21 +85,21 @@ if (input.getAttribute('value') === input.value) {
 
 // this function executes when the DOM has loaded
 $(document).ready(function() {
-  // load the data
-  getData('/container_profiles?all_ids=true', true);
-});
+    // load the data
+    // getData('/container_profiles?all_ids=true', true);
+    for (item in data) {
+      console.log(data[item])
+      makeRow(data[item]);
+    }
 
-// this function executes when all the AJAX requests have completed
-$(document).ajaxStop(function() {
-  // declare our table with options
-  let table = $('#results').DataTable({
-      "order": [
-          [1, 'asc']
-      ], // sets default sorts as title column, ascending
-      "paging": false, // removes paging
-      "sDom": "lrti", // disables the search box
-      fixedHeader: true
-  });
+    // declare our table with options
+    let table = $('#results').DataTable({
+        "order": [
+            [1, 'asc']
+        ], // sets default sorts as title column, ascending
+        "paging": false, // removes paging
+        "sDom": "lrti" // disables the search box
+    });
 
   // hide the loading gif
   $("#loading").hide();
