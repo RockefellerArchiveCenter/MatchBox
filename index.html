@@ -1,136 +1,93 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
-<head>
-  <!-- Google Analytics -->
-<script>
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>MatchBox</title>
+    <link rel="stylesheet" type="text/css" href="https://assets.rockarch.org/v0.10.0/main.min.css">
+    <link href="vendor/DataTables/datatables.min.css" rel="stylesheet">
+    <link href="css/app.css" rel="stylesheet">
+  </head>
 
-ga('create', 'UA-10013579-8', 'auto');
-ga('send', 'pageview');
-</script>
-<!-- End Google Analytics -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>MatchBox</title>
-  <!-- CDNs should be used for production deployment -->
-  <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css"> -->
-  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
-  <!-- local copy of CSS for development -->
-  <link href="https://fonts.googleapis.com/css?family=Audiowide" rel="stylesheet">
-  <link href="vendor/DataTables/datatables.min.css" rel="stylesheet">
-  <link href="vendor/bootstrap/bootstrap.min.css" rel="stylesheet">
-  <link href="css/app.css" rel="stylesheet">
-</head>
-
-<body>
-  <div class="container-fluid">
-
-    <div class="col-sm-10 col-sm-offset-1">
-      <div class="row">
-        <div class="col-sm-9">
-          <h1 class="page-title pull-left"><span class="logo">MatchBox</span><small> thinking inside the box</small></h1>
+  <body>
+    <header class="header header--blue">
+      <div class="wrapper">
+        <div class="container flex">
+          <div class="header__brand header__brand--text">
+            <a href="/" class="header__brand-title">Matchbox</a>
+            <p class="header__brand-subtitle">
+              Thinking inside the box
+            </p>
+          </div>
         </div>
-        <div class="col-sm-3">
-          <div class="text-right pull-right">
-            <button type="button" class="btn btn-primary button-sm hidden-print" style="margin-top:2em;" onclick="window.print(); ga('send', 'event', 'Print List', 'print')">Print List</button>
-            <button type="button" class="btn btn-warning button-sm hidden-print" data-toggle="modal" data-target="#help" style="margin-top:2em;">Help</button>
-            <div id="help" class="modal fade" role="dialog">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h2 class="modal-title text-left">Help</h2>
-                  </div>
-                  <div class="modal-body text-left">
-                    <p class="lead">MatchBox helps you find a box.</p>
-                    <h4>Searching</h4>
-                    <p>Use the search boxes to enter numerical values for height, width or depth. The application will return all boxes larger than the dimension entered. All dimensions are measured in inches.</p>
-                    <p>If you see a check mark next to box name, that indicates a common box size that we likely have in stock.</p>
-                    <h4>Sorting</h4>
-                    <p>You can sort multiple columns by holding down the shift key.</p>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  </div>
-                </div>
+      </div>
+    </header>
+    <main class="grid mb-30">
+      <div class="container--grid">
+        <div class="alert alert--orange" role="alert">
+          <div class="alert__text-wrapper ml-60">
+              <p class="alert__text">
+                This is a demonstration version of Matchbox which pulls from a static data file. 
+                For instructions on how to set up the application to pull data dynamically from 
+                ArchivesSpace, please visit the <a class="text--white" href="https://github.com/RockefellerArchiveCenter/MatchBox">GitHub repository</a>.
+              </p>
+          </div>
+        </div>
+        <div class="grid">
+          <div class="section__dimensions my-30">
+            <h2>Minimum Box Dimensions</h2>
+            <div class="flex inputs">
+              <div class="inputs__wrapper">
+                <label for="depth">Depth (in inches)</label>
+                <input type="text" id="depth">
+              </div>
+              <div class="inputs__wrapper">
+                <label for="width">Width (in inches)</label>
+                <input type="text" id="width">
+              </div>
+              <div class="inputs__wrapper">
+                <label for="height">Height (in inches)</label>
+                <input type="text" id="height">
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="alert alert-info">
-            This is a demonstration version of Matchbox which pulls from a static data file.
-            For instructions on how to set up the application to pull data dynamically from ArchivesSpace,
-            please visit the <a href="https://github.com/RockefellerArchiveCenter/MatchBox">GitHub repository</a>.
-          </div>
+        <div id="loading" class="wrapper" aria-label="loading">
+          <img alt="" src="img/loading.gif" />
         </div>
-      </div>
 
-      <div class="row">
-        <div id="dimensions" class="col-sm-12 well">
-          <div class="form-group col-sm-2 col-sm-offset-3">
-            <label for="height">Height</label>
-            <input type="text" class="form-control" id="height">
-          </div>
-          <div class="form-group col-sm-2">
-            <label for="width">Width</label>
-            <input type="text" class="form-control" id="width">
-          </div>
-          <div class="form-group col-sm-2">
-            <label for="depth">Depth</label>
-            <input type="text" class="form-control" id="depth">
-          </div>
-          <div class="col-sm-6 col-sm-offset-3">
-            <p class="text-center help-block">Enter all dimensions in inches</p>
-          </div>
-        </div>
+        <button class="btn btn--blue btn--sm count__button" id="clear-count">Clear Counts</button>
+        <table id="results" class="table table-striped" width="100%">
+          <thead>
+            <tr>
+              <th>Count</th>
+              <th>Name</th>
+              <th>Depth</th>
+              <th>Width</th>
+              <th>Height</th>
+              <th>Cubic Feet</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
       </div>
-
-      <div id="loading" class="text-center">
-        <img src="img/loading.gif" />
-      </div>
-
-      <table id="results" class="table" width="100%" style="display:none;">
-        <thead>
-          <tr>
-            <th><button class="btn btn-default" id="clear-count">Clear</button></th>
-            <th>Name</th>
-            <th>Height</th>
-            <th>Width</th>
-            <th>Depth</th>
-            <th>Cubic Feet</th>
-          </tr>
-        </thead>
-        <tbody>
-        </tbody>
-      </table>
-
-      </div>
-      <div class="row">
-        <div class="calculator closed text-center col-sm-12">
-          <h2><span id="total-cubic-feet">0</span> <small>total cubic feet</small></h2>
-        </div>
-      </div>
+    </main>
+    <div class="calculator wrapper">
+      <h2 class="calculator__text" aria-live="polite"><span id="total-cubic-feet">0</span> total cubic feet </h2>
     </div>
-    <!-- CDNs should be used for production deployment -->
-    <!-- <script src="//code.jquery.com/jquery-2.2.3.min.js"></script> -->
-    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> -->
-    <!-- <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.15/datatables.min.js"></script> -->
-    <!-- local copies of scripts for development -->
-    <script src="vendor/jQuery/jquery-3.1.0.min.js"></script>
-    <script src="vendor/bootstrap/bootstrap.min.js"></script>
+
+    <script src="vendor/jQuery/jquery-3.7.1.min.js"></script>
     <script src="vendor/DataTables/datatables.min.js"></script>
     <!-- application scripts -->
+    <script src="js/app-config.js"></script>
     <script src="js/data.js"></script>
-    <script src="js/app.js?4"></script>
-</body>
+    <script src="js/app.js?9"></script>
+    <script>
+  </script>
+  </body>
 
 </html>
