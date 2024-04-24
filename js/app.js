@@ -1,3 +1,5 @@
+var preferredContainers = []
+
 // Gets data from ArchivesSpace
 function getData(uri, list) {
   $.ajax({
@@ -64,42 +66,42 @@ $.fn.dataTable.ext.search.push(
 );
 
 function calculate(input) {
-if (input.getAttribute('value') === input.value) {
-    $(input).data('lastvalue', input.value);
-} else {
-    totalCubicFeet = parseFloat($('#total-cubic-feet').text().replace(',', ''));
-    cubicFeet = parseFloat($(input).parents('tr').children('td').last().text());
-    if (input.value < $(input).data('lastvalue')) { // subtraction
-      difference = $(input).data('lastvalue') - (input.value || 0);
-      newTotalCubicFeet = totalCubicFeet-(cubicFeet*difference);
-    } else { // addition
-      difference = input.value - ($(input).data('lastvalue') || 0)
-      newTotalCubicFeet = totalCubicFeet+(cubicFeet*difference);
-    }
+  if (input.getAttribute('value') === input.value) {
+      $(input).data('lastvalue', input.value);
+  } else {
+      totalCubicFeet = parseFloat($('#total-cubic-feet').text().replace(',', ''));
+      cubicFeet = parseFloat($(input).parents('tr').children('td').last().text());
+      if (input.value < $(input).data('lastvalue')) { // subtraction
+        difference = $(input).data('lastvalue') - (input.value || 0);
+        newTotalCubicFeet = totalCubicFeet-(cubicFeet*difference);
+      } else { // addition
+        difference = input.value - ($(input).data('lastvalue') || 0)
+        newTotalCubicFeet = totalCubicFeet+(cubicFeet*difference);
+      }
 
     $('#total-cubic-feet').text(newTotalCubicFeet
       .toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}))
     $(input).data('lastvalue', input.value);
-}
+  }
 }
 
 // this function executes when the DOM has loaded
 $(document).ready(function() {
-    // load the data
-    // getData('/container_profiles?all_ids=true', true);
-    for (item in data) {
-      console.log(data[item])
-      makeRow(data[item]);
-    }
+  // load the data
+  // getData('/container_profiles?all_ids=true', true);
+  for (item in data) {
+    console.log(data[item])
+    makeRow(data[item]);
+  }
 
-    // declare our table with options
-    let table = $('#results').DataTable({
-        "order": [
-            [1, 'asc']
-        ], // sets default sorts as title column, ascending
-        "paging": false, // removes paging
-        "sDom": "lrti" // disables the search box
-    });
+  // declare our table with options
+  let table = $('#results').DataTable({
+      "order": [
+          [1, 'asc']
+      ], // sets default sorts as title column, ascending
+      "paging": false, // removes paging
+      "sDom": "lrti" // disables the search box
+  });
 
   // hide the loading gif
   $("#loading").hide();
@@ -110,18 +112,19 @@ $(document).ready(function() {
 
   table.draw();
 
-// Event listener to redraw on search input
-$('#height, #width, #depth').keyup( function() {
-    table.draw();
-} );
+  // Event listener to redraw on search input
+  $('#height, #width, #depth').keyup( function() {
+      table.draw();
+  } );
 
-// Cubic footage calculator functions
-$('.count').on('input change', function(){
-  calculate(this)
-});
+  // Cubic footage calculator functions
+  $('.count').on('input change', function(){
+    calculate(this)
+  });
 
-$('#clear-count').on('click', function(){
-  $('.count').val("");
-  $('#total-cubic-feet').text(0);
-});
+  $('#clear-count').on('click', function(){
+    $('.count').val("");
+    $('#total-cubic-feet').text(0);
+  });
+
 });
