@@ -73,24 +73,15 @@ $.fn.dataTable.ext.search.push(
     }
 );
 
-function calculate(input) {
-  if (input.getAttribute('value') === input.value) {
-      $(input).data('lastvalue', input.value);
-  } else {
-      totalCubicFeet = parseFloat($('#total-cubic-feet').text().replace(',', ''));
-      cubicFeet = parseFloat($(input).parents('tr').children('td').last().text());
-      if (input.value < $(input).data('lastvalue')) { // subtraction
-        difference = $(input).data('lastvalue') - (input.value || 0);
-        newTotalCubicFeet = totalCubicFeet-(cubicFeet*difference);
-      } else { // addition
-        difference = input.value - ($(input).data('lastvalue') || 0)
-        newTotalCubicFeet = totalCubicFeet+(cubicFeet*difference);
-      }
-
-      $('#total-cubic-feet').text(newTotalCubicFeet
-        .toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}))
-      $(input).data('lastvalue', input.value);
-  }
+// Calculates total cubic feet
+function calculate() {
+    var totalCubicFeet = parseFloat('0.0')
+    $('.count').each(function(i, obj) {
+        cubicFeet = parseFloat($(obj).parents('tr').children('td').last().text());
+        totalCubicFeet += (obj.value * cubicFeet)
+    });
+    $('#total-cubic-feet').text(
+        totalCubicFeet.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}))
 }
 
 // this function executes when the DOM has loaded
@@ -127,7 +118,7 @@ $(document).ajaxStop(function() {
 
   // Cubic footage calculator functions
   $('.count').on('input change', function(){
-    calculate(this)
+    calculate()
   });
 
   $('#clear-count').on('click', function(){
