@@ -14,7 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>MatchBox</title>
-    <link rel="stylesheet" type="text/css" href="https://assets.rockarch.org/v0.10.0/main.min.css">
+    <link rel="stylesheet" type="text/css" href="https://assets.rockarch.org/v1.0.4/main.min.css">
     <link href="vendor/DataTables/datatables.min.css" rel="stylesheet">
     <link href="css/app.css" rel="stylesheet">
   </head>
@@ -25,9 +25,9 @@
         <div class="container flex">
           <div class="header__brand header__brand--text">
             <a href="/" class="header__brand-title">Matchbox</a>
-            <p class="header__brand-subtitle">
+            <div class="header__brand-subtitle">
               Thinking inside the box
-            </p>
+            </div>
           </div>
         </div>
       </div>
@@ -59,20 +59,22 @@
         </div>
 
         <button class="btn btn--blue btn--sm count__button" id="clear-count">Clear Counts</button>
-        <table id="results" class="table table-striped" width="100%">
-          <thead>
-            <tr>
-              <th>Count</th>
-              <th>Name</th>
-              <th>Depth</th>
-              <th>Width</th>
-              <th>Height</th>
-              <th>Cubic Feet</th>
-            </tr>
-          </thead>
-          <tbody>
-          </tbody>
-        </table>
+        <div class="table-responsive">
+          <table id="results" class="table table-striped" width="100%">
+            <thead>
+              <tr>
+                <th>Count</th>
+                <th>Name</th>
+                <th>Depth</th>
+                <th>Width</th>
+                <th>Height</th>
+                <th>Cubic Feet</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
       </div>
     </main>
     <div class="calculator wrapper">
