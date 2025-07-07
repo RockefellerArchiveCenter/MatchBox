@@ -1,0 +1,16 @@
+name: Matchbox
+services:
+    matchbox:
+        environment:
+            - API_TOKEN=TESTING
+            - BASEURL=as.rockarch.org
+            - PREFERRED_CONTAINERS=['/repositories/2/containers/1']
+        container_name: matchbox
+        image: matchbox
+        # build: .
+        networks:
+            npm_default:
+networks:
+  npm_default:
+    name: npm_default
+    external: true

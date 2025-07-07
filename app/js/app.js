@@ -1,16 +1,18 @@
 // Gets data from ArchivesSpace
 function getData(uri, list) {
+    const parsedUri = uri.replace(/^(\/)/, '');
+    const parsedBaseUrl = "${BASEURL}".replace(/\/+$/, '');
     $.ajax({
         type: "GET",
         dataType: "json",
         beforeSend: function(request) {
-            request.setRequestHeader("X-ArchivesSpace-Session", token);
+            request.setRequestHeader("X-ArchivesSpace-Session", "${API_TOKEN}");
         },
-        url: baseUrl + uri,
+        url: `${parsedBaseUrl}/${parsedUri}`,
         success: function(data) {
             if (list) { // if the data that's returned is a list, iterate through it and get each item's data
                 for (item of data) {
-                    getData('/container_profiles/' + item, false);
+                    getData(`/container_profiles/${item}`, false);
                 }
             } else { // otherwise, use the data returned to make a row
                 makeRow(data);
@@ -33,7 +35,7 @@ function getData(uri, list) {
 function makeRow(container) {
     const cubicFeet = ((container['height'] * container['width'] * container['depth']) / 1728)
         .toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})
-    const preferredClass = preferredContainers.includes(container["uri"]) ? 'preferred' : null
+    const preferredClass = ${PREFERRED_CONTAINERS}.includes(container["uri"]) ? 'preferred' : null
     const inputId = container['uri'].split('/').slice(-1)
     const row = `<tr class="${preferredClass}">
                     <td>
@@ -116,7 +118,7 @@ $(document).ajaxStop(function() {
       table.draw();
   } );
 
-  // Cubic footage calculator functions
+  // Cubic tage calculator functions
   $('.count').on('input change', function(){
     calculate()
   });
