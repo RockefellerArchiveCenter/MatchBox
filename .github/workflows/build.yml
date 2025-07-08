@@ -1,0 +1,30 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - base
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      APPLICATION_NAME: fluxx_exporter
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.2.2
+
+      - name: Login to Docker
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+      - name: Build Docker container
+        run: docker build -t ${{ env.APPLICATION_NAME }} .
+
+      - name: Save image as tarfile
+        run: docker save -o ${{ env.APPLICATION_NAME }}.tar ${{ env.APPLICATION_NAME }}:latest
+
+      - uses: actions/upload-artifact@v4
+        with:
+            name: ${{ env.APPLICATION_NAME }}.tar
+            path: ${{ env.APPLICATION_NAME }}.tar
