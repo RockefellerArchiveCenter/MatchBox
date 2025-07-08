@@ -9,6 +9,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment: base
     env:
       APPLICATION_NAME: fluxx_exporter
     steps:
