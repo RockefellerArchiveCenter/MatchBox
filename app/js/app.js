@@ -118,7 +118,7 @@ $(document).ajaxStop(function() {
       table.draw();
   } );
 
-  // Cubic tage calculator functions
+  // Cubic footage calculator functions
   $('.count').on('input change', function(){
     calculate()
   });
