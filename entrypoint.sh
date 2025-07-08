@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 # Replace environment variables in Javascript file.
 for i in $(env)
 do
