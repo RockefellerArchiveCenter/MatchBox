@@ -31,7 +31,7 @@ The following routes need to have CORS requesting enabled:
 
 1.  Download or clone this repository.
 
-2.  With [Docker]() installed, build the container: 
+2.  With [Docker](https://docs.docker.com/get-started/get-docker/) installed, build the container: 
         
         docker build -t matchbox .
 
