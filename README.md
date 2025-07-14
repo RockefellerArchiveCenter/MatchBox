@@ -1,8 +1,6 @@
 # MatchBox
 A simple application that uses the ArchivesSpace API to help determine the box into which a three-dimensional object will fit.
 
-A demonstration site, which uses static data, is available at [http://demo.matchbox.rockarch.org/](http://demo.matchbox.rockarch.org/)
-
 ## What is MatchBox?
 
 MatchBox is a browser-based tool that matches archival objects to appropriate box sizes. This collections management tool is used for housing materials that require box sizes more specialized than standard record storage boxes or standard letter/legal document boxes.
@@ -42,12 +40,6 @@ The following routes need to have CORS requesting enabled:
           -e API_TOKEN:81ee42992541795ad7cee5b5701a632fd43a61831b1768cab88e921e3a983e27 \
           -e PREFERRED_CONTAINERS:"['/container_profiles/1","/container_profiles/2']" \
           matchbox
-
-2.  Set up a config file, which should be named `app-config.js` and placed in the `js/` directory. It should look something like this:
-
-        const baseUrl = "http://localhost:8089"; // Base url for your ArchivesSpace instance, including the backend port number
-        const token = "81ee42992541795ad7cee5b5701a632fd43a61831b1768cab88e921e3a983e27"; // Non-expiring session token for an AS user
-        const preferredContainers = ["/container_profiles/1","/container_profiles/2"] // optional list of AS URIs for container profiles to be marked as preferred
 
 The `API_TOKEN` should be a non-expiring session token from ArchivesSpace. To get this token, use a `expiring=false` 
 parameter when making an [ArchivesSpace authentication request](http://archivesspace.github.io/archivesspace/api/#authentication).
