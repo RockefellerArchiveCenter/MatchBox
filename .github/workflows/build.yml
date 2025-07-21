@@ -27,5 +27,5 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-            name: ${{ env.APPLICATION_NAME }}.tar
-            path: docker-image
+            name: docker-image
+            path: ${{ env.APPLICATION_NAME }}.tar
